@@ -66,7 +66,12 @@ Plug 'tomasr/molokai'
 "Plug 'fuenor/im_control.vim'
 "Plug 'osyo-manga/vim-nyaaancat'
 Plug 'altercation/vim-colors-solarized'
+Plug 'thinca/vim-singleton'
 call plug#end()
+
+"----------------------------------------
+"Singleton
+call singleton#enable()
 
 "----------------------------------------
 set nocompatible
