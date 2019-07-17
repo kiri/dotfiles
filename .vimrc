@@ -147,6 +147,27 @@ let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
 let g:auto_save_silent = 1  " do not display the auto-save notification
 
 "----------------------------------------
+" セッション情報を保存と復元:
+"au VimLeave * mks! ~/vimfiles/Session.vim
+augroup SessionAutocommands
+   autocmd!
+   autocmd VimEnter * nested call <SID>RestoreSessionWithConfirm()
+   autocmd VimLeave * execute 'SaveSession'
+augroup END
+ 
+command! RestoreSession :source     ~/vimfiles/Session.vim
+command! SaveSession    :mksession! ~/vimfiles/Session.vim
+ 
+" Restore session with confirm
+function! s:RestoreSessionWithConfirm()
+  let msg = 'Do you want to restore previous session?'
+
+  if !argc() && confirm(msg, "&Yes\n&No", 1, 'Question') == 1
+    execute 'RestoreSession'
+  endif
+endfunction
+
+"----------------------------------------
 " eSKK.vim
 "
 let g:eskk#directory = "~/vimfiles/eskk"
@@ -311,28 +332,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-""----------------------------------------
-"" セッション情報を保存と復元:
-"au VimLeave * mks! ~/vimfiles/Session.vim
-"augroup SessionAutocommands
-"   autocmd!
-" 
-"   autocmd VimEnter * nested call <SID>RestoreSessionWithConfirm()
-"   autocmd VimLeave * execute 'SaveSession'
-"augroup END
-" 
-"command! RestoreSession :source     ~/vimfiles/Session.vim
-"command! SaveSession    :mksession! ~/vimfiles/Session.vim
-" 
-"" Restore session with confirm
-"function! s:RestoreSessionWithConfirm()
-"  let msg = 'Do you want to restore previous session?'
-"
-"  if !argc() && confirm(msg, "&Yes\n&No", 1, 'Question') == 1
-"    execute 'RestoreSession'
-"  endif
-"endfunction
 
 "" auto reload .vimrc
 "augroup source-vimrc
