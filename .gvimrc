@@ -77,10 +77,11 @@ set notitle
 "" let &guioptions = substitute(&guioptions, "t", "", "g")
 "" let &guioptions = substitute(&guioptions, "T", "", "g")
 "
-"" ウインドウの幅
-"set columns=120
-"" ウインドウの高さ
-"set lines=24
+" ウインドウの幅
+set columns=120
+" ウインドウの高さ
+set lines=24
+
 "" コマンドラインの高さ(GUI使用時)
 "set cmdheight=2
 "" 画面を黒地に白にする (次行の先頭の " を削除すれば有効になる)

@@ -126,7 +126,7 @@ set number ruler
 nnoremap Y y$
 set wrap
 set pumheight=10
-set showtabline=1
+set showtabline=2
 
 set undodir=./_vimundo,~/vimfiles/undo
 set undofile
