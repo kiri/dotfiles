@@ -8,12 +8,14 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | source $MYVIMRC | endif
 
+" Initialize plugin system
 call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'glidenote/memolist.vim'
 Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-scripts/vim-auto-save'
-" Initialize plugin system
+Plug 'mattn/vim-sonictemplate'
+Plug 'yasukotelin/shirotelin'
 call plug#end()
 
 "
@@ -68,7 +70,8 @@ set visualbell
 set background=dark
 "set background=light
 "colorscheme desert
-colorscheme toast
+"colorscheme toast
+colorscheme shirotelin
 set termguicolors
 
 set scrolloff=5
@@ -89,8 +92,9 @@ set cursorline
 "      \ },
 "      \ }
 
+"\ 'colorscheme': 'wombat',
 let g:lightline = {
-        \ 'colorscheme': 'wombat',
+        \ 'colorscheme': 'shirotelin',
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -148,12 +152,11 @@ function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-
 let mapleader="\<Space>"
-
 let g:memolist_path="~/OneDrive/vim-memolist"
+let g:memolist_memo_suffix = "md"
+let g:memolist_template_dir_path="~/OneDrive/vim-memolist"
 let g:auto_save=1
 map <Leader>mn  :MemoNew<CR>
 map <Leader>ml  :MemoList<CR>
 map <Leader>mg  :MemoGrep<CR>
-let g:memolist_memo_suffix = "md"
