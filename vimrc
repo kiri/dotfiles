@@ -1,5 +1,5 @@
 " .vimrc
-
+"
 " vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : has('win32') ? '~/vimfiles' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -16,6 +16,8 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'mattn/vim-sonictemplate'
 Plug 'yasukotelin/shirotelin'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 "
@@ -74,11 +76,13 @@ set background=dark
 colorscheme shirotelin
 set termguicolors
 
+set rop=type:directx
+
 set scrolloff=5
 set sidescrolloff=8
 set sidescroll=1
-set guifont=HackGen_Console:h14:cSHIFTJIS:qDRAFT
 set cursorline
+"set guifont=HackGen_Console:h14:cSHIFTJIS:qDRAFT
 
 "let g:lightline = {
 "      \ 'colorscheme': 'wombat'
@@ -160,3 +164,74 @@ let g:auto_save=1
 map <Leader>mn  :MemoNew<CR>
 map <Leader>ml  :MemoList<CR>
 map <Leader>mg  :MemoGrep<CR>
+
+
+" Vim-lspでtextlintを使う設定
+" プラグインvim-lsp, vim-lsp-settings, efm-langserverのビルドにgo, textlintの実行にnode.js
+"
+" go,node.jsともにインストーラーを使わずにzip形式のバイナリを利用する
+"
+" go言語とnode.jsのインストールはzip形式展開して置く。それぞれ次の位置にくるように
+" %USERPROFILE%\App\go1.20.1.windows-amd64\go\bin\go.exe
+" %USERPROFILE%\App\node-v18.15.0-win-x64\node.exe
+"
+" PATHを設定
+" path %path%;%USERPROFILE%\App\go1.20.1.windows-amd64\go;%USERPROFILE%\App\node-v18.15.0-win-x64
+"
+" 環境変数を設定
+" set GOPATH=%USERPROFILE%\App\go1.20.1.windows-amd64\go
+" set NODE_PATH=%USERPROFILE%\App\node-v18.15.0-win-x64\node_modules
+"
+" textlintの設定ファイルの位置はここ(textlint --config textlint-config-<name>)
+" %USERPROFILE%\.textlintrc
+"
+" 参考
+" https://github.com/prabirshrestha/vim-lsp
+" https://github.com/mattn/vim-lsp-settings
+" https://github.com/mattn/efm-langserver
+" https://zenn.dev/skanehira/articles/2020-11-16-vim-writing-articles
+"
+let g:lsp_diagnostics_signs_enabled = 1
+let g:lsp_diagnostics_signs_error = {"text": "💩"}
+"let g:lsp_diagnostics_signs_error = {"text": "❌"}
+let g:lsp_diagnostics_signs_warning = {"text": "👻"}
+"let g:lsp_diagnostics_signs_warning = {"text": "⚠️"}
+let g:lsp_diagnostics_signs_information = {"text": "❗"}
+let g:lsp_diagnostics_signs_hint = {"text": "❓"}
+
+let g:lsp_document_code_action_signs_enabled = 1
+let g:lsp_document_code_action_signs_hint = {"text": "❓"}
+if !has('nvim')
+  let g:lsp_diagnostics_float_cursor = 1
+endif
+
+"ログ採取
+"let g:lsp_log_verbose = 1
+"let g:lsp_log_file = expand('~/vim-lsp.log')
+
+"vim-lsp-settingsのサーバインストール先
+let g:lsp_settings_servers_dir = expand('~/vimfiles/vim-lsp-servers')
+"デフォルトvim-lsp-settingsで導入されるefm-langerverの位置はここ(let g:lsp_settings_servers_dir=<path> )
+" %USERPROFILE%\AppData\Local\vim-lsp-settings\servers\efm-langserver\efm-langserver.exe
+
+"vim-lsp-settingsの設定
+let g:lsp_settings = {
+      \ 'efm-langserver': {
+      \   'args': ['-c', expand('~/vimfiles/vim-lsp-servers/efm-langserver-config.yaml')],
+      \   'disabled': 0,
+      \   'allowlist': ['markdown'],
+      \  }
+      \ }
+" デフォルトefm-langserverの設定ファイルの位置はここ(efm-langserver -c <config.yaml>)
+" %USERPROFILE%\AppData\Roaming\efm-langserver\config.yaml
+"
+function! s:on_lsp_buffer_enabled() abort
+  setlocal completeopt=menu
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+endfunction
+
+augroup lsp_install
+  au!
+  au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
