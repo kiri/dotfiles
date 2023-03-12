@@ -18,6 +18,7 @@ Plug 'mattn/vim-sonictemplate'
 Plug 'yasukotelin/shirotelin'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'delphinus/vim-auto-cursorline'
 call plug#end()
 
 "
@@ -83,6 +84,9 @@ set sidescrolloff=8
 set sidescroll=1
 set cursorline
 "set guifont=HackGen_Console:h14:cSHIFTJIS:qDRAFT
+
+" vim-auto-save
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 "let g:lightline = {
 "      \ 'colorscheme': 'wombat'
