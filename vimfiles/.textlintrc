@@ -1,17 +1,34 @@
 {
   "filters": {},
   "rules": {
+    "no-doubled-joshi": true,
+    "no-doubled-conjunction": true,
+    "ja-unnatural-alphabet": true,
+    "@textlint-ja/no-synonyms": {
+      //許可するワードの配列(無視する)
+      "allows": ["ウェブアプリ", "ウェブアプリケーション"],
+      //使用を許可する見出し語の配列(これ以外の同義語をエラーにする)
+      "preferWords": ["ユーザー"],
+      "allowAlphabet": false,
+      "allowNumber": false,
+      "allowLexeme": false
+    },
+    "max-ten": {
+      // 1文に利用できる最大の、の数
+      // max: 3の場合は4つ以上の読点でエラーとなる
+      "max": 3,
+      // 例外ルールを適応するかどうか,
+      "strict": false,
+      // 読点として扱う文字
+      "touten": "、",
+      // 句点として扱う文字
+      "kuten": "。"
+    },
     "preset-ja-technical-writing": {
       "ja-no-weak-phrase": false,
       "ja-no-mixed-period": false,
       "no-exclamation-question-mark": false
     },
-    "preset-jtf-style": true,
-    "prh": {
-      "rulePaths": [
-        "node_modules\\textlint-rule-prh\\node_modules\\prh\\prh-rules\\media\\WEB+DB_PRESS.yml",
-        "node_modules\\textlint-rule-prh\\node_modules\\prh\\prh-rules\\media\\techbooster.yml"
-      ]
-    }
+    "preset-jtf-style": true
   }
 }
