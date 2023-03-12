@@ -1,9 +1,26 @@
 {
   "filters": {},
   "rules": {
-    "no-doubled-joshi": true,
-    "no-doubled-conjunction": true,
-    "ja-unnatural-alphabet": true,
+    // 技術文書向けのtextlintルールプリセット
+    "preset-ja-technical-writing": {
+      "ja-no-weak-phrase": false,
+      "ja-no-mixed-period": false,
+      "no-exclamation-question-mark": false
+    },
+
+    // JTF日本語標準スタイルガイド
+    "preset-jtf-style": true,
+
+    // よくある日本語の誤用をチェックするtextlintルール
+    "ja-no-abusage": true,
+
+    // 冗長な表現をチェックするtextlintルール
+    "ja-no-redundant-expression": true,
+
+    // textlint rule that check no mix である and ですます.
+    "no-mix-dearu-desumasu": true,
+
+    // 同義語を表記ゆれをチェックするtextlintルール
     "@textlint-ja/no-synonyms": {
       //許可するワードの配列(無視する)
       "allows": ["ウェブアプリ", "ウェブアプリケーション"],
@@ -13,6 +30,17 @@
       "allowNumber": false,
       "allowLexeme": false
     },
+
+    // 文中に同じ助詞が複数出てくるのをチェックするtextlintルール
+    "no-doubled-joshi": true,
+
+    // textlint plugin to check duplicated same conjunctions.
+    "no-doubled-conjunction": true,
+
+    // 不自然なアルファベットを検知するtextlintルール
+    "ja-unnatural-alphabet": true,
+
+    // textlint rule that limit maxinum ten(、) count of sentence.
     "max-ten": {
       // 1文に利用できる最大の、の数
       // max: 3の場合は4つ以上の読点でエラーとなる
@@ -23,12 +51,17 @@
       "touten": "、",
       // 句点として扱う文字
       "kuten": "。"
-    },
-    "preset-ja-technical-writing": {
-      "ja-no-weak-phrase": false,
-      "ja-no-mixed-period": false,
-      "no-exclamation-question-mark": false
-    },
-    "preset-jtf-style": true
+    }
   }
 }
+// npm install textlint-rule-preset-ja-technical-writing -g
+// npm install textlint-rule-preset-jtf-style -g
+// npm install textlint-rule-ja-no-abusage -g
+// npm install textlint-rule-ja-no-redundant-expression -g
+// npm install textlint-rule-no-mix-dearu-desumasu -g
+// npm install @textlint-ja/textlint-rule-no-synonyms sudachi-synonyms-dictionary -g
+// npm install textlint-rule-no-doubled-joshi -g
+// npm install textlint-rule-no-doubled-conjunction -g
+// npm install textlint-rule-ja-unnatural-alphabet -g
+// npm install textlint-rule-max-ten -g
+
