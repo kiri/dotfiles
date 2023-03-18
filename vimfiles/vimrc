@@ -14,11 +14,12 @@ Plug 'itchyny/lightline.vim'
 Plug 'glidenote/memolist.vim'
 Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-scripts/vim-auto-save'
-Plug 'mattn/vim-sonictemplate'
+"Plug 'mattn/vim-sonictemplate'
 Plug 'yasukotelin/shirotelin'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'delphinus/vim-auto-cursorline'
+Plug 'rhysd/vim-healthcheck'
 call plug#end()
 
 "
@@ -29,6 +30,10 @@ set virtualedit=block
 set backspace=indent,eol,start
 set ambiwidth=double
 set wildmenu
+
+set encoding=utf-8
+set fileencodings=iso-20220jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
 
 set ignorecase
 set smartcase
@@ -63,7 +68,16 @@ set noswapfile
 set title
 set number
 set clipboard=unnamed,autoselect
+
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+set nojoinspaces
+nnoremap J gJ
+nnoremap gJ J
+
 syntax on
 set nrformats=
 set whichwrap=b,s,h,l<,>,[,],~
@@ -172,9 +186,7 @@ map <Leader>mg  :MemoGrep<CR>
 
 " Vim-lspでtextlintを使う設定
 " プラグインvim-lsp, vim-lsp-settings, efm-langserverのビルドにgo, textlintの実行にnode.js
-"
 " go,node.jsともにインストーラーを使わずにzip形式のバイナリを利用する
-"
 " go言語とnode.jsのインストールはzip形式展開して置く。それぞれ次の位置にくるように
 " %USERPROFILE%\App\go1.20.1.windows-amd64\go\bin\go.exe
 " %USERPROFILE%\App\node-v18.15.0-win-x64\node.exe
@@ -186,7 +198,7 @@ map <Leader>mg  :MemoGrep<CR>
 " set GOPATH=%USERPROFILE%\App\go1.20.1.windows-amd64\go
 " set NODE_PATH=%USERPROFILE%\App\node-v18.15.0-win-x64\node_modules
 "
-" textlintの設定ファイルの位置はここ(textlint --config textlint-config-<name>)
+" textlintの設定ファイルの位置
 " %USERPROFILE%\.textlintrc
 "
 " 参考
@@ -233,6 +245,9 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal completeopt=menu
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
+
+  nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <plug>(lsp-next-diagnostic)
 endfunction
 
 augroup lsp_install
