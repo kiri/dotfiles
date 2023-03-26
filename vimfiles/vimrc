@@ -201,25 +201,29 @@ map <Leader>mg  :MemoGrep<CR>
 "   https://zenn.dev/skanehira/articles/2020-11-16-vim-writing-articles
 "
 " 必要なもの
-" Vimプラグインvim-lsp, vim-lsp-settings
-" efm-langserverのビルドにgo,
-" textlintの実行にnodejs
-" go,nodejsともにインストーラーを使わずにzip形式のバイナリを使う前提
+" ・Vimプラグインvim-lsp, vim-lsp-settings
+" ・efm-langserverのビルドにgo
+" ・textlintの実行にnodejs
 " go言語とnode.jsのインストールはzip形式展開して適当なフォルダに置く。
+" go,nodejsともにインストーラーを使わずにzip形式のバイナリを使う前提
 "
-" PATHにgo/bin(インストール先の下のbin)とnodejs(=インストール先)と
-" %APPDATA\npm(=C:%USERPROFILE%\AppData\Roaming\npm)を追加する。
-" ちなみに%APPDATA\npmはnodejs/node_modules/npm/npmrcに書いてある
-" prefix=${APPDATA}\npmのこと
+" PATHにつぎの３つを追加する。
+" ・go/bin(goインストール先の下のbin)
+" ・nodejs(=node.jsインストール先)
+" ・%APPDATA\npm(=C:%USERPROFILE%\AppData\Roaming\npm)
+" 　${APPDATA}\npmは%APPDATA\npmはnodejs/node_modules/npm/npmrcに
+" 　書いてあるprefix=${APPDATA}\npmに合わせる
 "
-" それ以外の環境変数は特に設定しなくてもいいようだ
-" 設定するとしたら
-"   set GOPATH=goのインストール先
-"   set NODE_PATH=nodejs\node_modules
-"
-" ちなみにインストーラーでインストールするとインストール先は
+" インストーラーでインストールするとインストール先はそれぞれ
 "   C:\Program Files\go
 "   C:\Program Files\nodejs
+"
+" textlintのインストール
+" npm install textlint -g
+" npm install textlint-rule-preset-ja-technical-writing -g
+" npm install textlint-rule-preset-jtf-style -g
+" npm install textlint-rule-prh -g
+" npm install @textlint-ja/textlint-rule-no-synonyms sudachi-synonyms-dictionary -g
 "
 " textlintの設定ファイルの位置
 "   %USERPROFILE%\.textlintrc
@@ -262,10 +266,6 @@ map <Leader>mg  :MemoGrep<CR>
 "     },
 "   }
 " }
-" // npm install textlint-rule-preset-ja-technical-writing -g
-" // npm install textlint-rule-preset-jtf-style -g
-" // npm install textlint-rule-prh -g
-" // npm install @textlint-ja/textlint-rule-no-synonyms sudachi-synonyms-dictionary -g
 "
 """""""""""""""""
 
@@ -285,21 +285,21 @@ endif
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 
-"vim-lsp-settingsのサーバインストール先
-"let g:lsp_settings_servers_dir = expand('~/vimfiles/vim-lsp-servers')
+"vim-lsp-settingsがのサーバをインストールする先
 "デフォルトvim-lsp-settingsで導入されるefm-langerverの位置はここ(let g:lsp_settings_servers_dir=<path> )
 " %USERPROFILE%\AppData\Local\vim-lsp-settings\servers\efm-langserver\efm-langserver.exe
-
+" デフォルトefm-langserverの設定ファイルの位置はここ(efm-langserver -c <config.yaml>)
+" %USERPROFILE%\AppData\Roaming\efm-langserver\config.yaml
+"
 "vim-lsp-settingsの設定
+let g:lsp_settings_servers_dir = expand('~/Applications/AppData/Local/vim-lsp-servers')
 let g:lsp_settings = {
       \ 'efm-langserver': {
-      \   'args': ['-c', expand('~/vimfiles/vim-lsp-servers/efm-langserver-config.yaml')],
+      \   'args': ['-c', expand('~/Applications/AppData/Roaming/efm-langserver/config.yaml')],
       \   'disabled': 0,
       \   'allowlist': ['markdown'],
       \  }
       \ }
-" デフォルトefm-langserverの設定ファイルの位置はここ(efm-langserver -c <config.yaml>)
-" %USERPROFILE%\AppData\Roaming\efm-langserver\config.yaml
 "
 """"""""""""""""""""""
 " config.yaml
