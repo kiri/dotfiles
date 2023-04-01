@@ -201,29 +201,25 @@ map <Leader>mg  :MemoGrep<CR>
 "   https://zenn.dev/skanehira/articles/2020-11-16-vim-writing-articles
 "
 " 必要なもの
-" ・Vimプラグインvim-lsp, vim-lsp-settings
-" ・efm-langserverのビルドにgo
-" ・textlintの実行にnodejs
-" go言語とnode.jsのインストールはzip形式展開して適当なフォルダに置く。
+" Vimプラグインvim-lsp, vim-lsp-settings
+" efm-langserverのビルドにgo,
+" textlintの実行にnodejs
 " go,nodejsともにインストーラーを使わずにzip形式のバイナリを使う前提
+" go言語とnode.jsのインストールはzip形式展開して適当なフォルダに置く。
 "
-" PATHにつぎの３つを追加する。
-" ・go/bin(goインストール先の下のbin)
-" ・nodejs(=node.jsインストール先)
-" ・%APPDATA\npm(=C:%USERPROFILE%\AppData\Roaming\npm)
-" 　${APPDATA}\npmは%APPDATA\npmはnodejs/node_modules/npm/npmrcに
-" 　書いてあるprefix=${APPDATA}\npmに合わせる
+" PATHにgo/bin(インストール先の下のbin)とnodejs(=インストール先)と
+" %APPDATA\npm(=C:%USERPROFILE%\AppData\Roaming\npm)を追加する。
+" ちなみに%APPDATA\npmはnodejs/node_modules/npm/npmrcに書いてある
+" prefix=${APPDATA}\npmのこと
 "
-" インストーラーでインストールするとインストール先はそれぞれ
+" それ以外の環境変数は特に設定しなくてもいいようだ
+" 設定するとしたら
+"   set GOPATH=goのインストール先
+"   set NODE_PATH=nodejs\node_modules
+"
+" ちなみにインストーラーでインストールするとインストール先は
 "   C:\Program Files\go
 "   C:\Program Files\nodejs
-"
-" textlintのインストール
-" npm install textlint -g
-" npm install textlint-rule-preset-ja-technical-writing -g
-" npm install textlint-rule-preset-jtf-style -g
-" npm install textlint-rule-prh -g
-" npm install @textlint-ja/textlint-rule-no-synonyms sudachi-synonyms-dictionary -g
 "
 " textlintの設定ファイルの位置
 "   %USERPROFILE%\.textlintrc
@@ -266,6 +262,10 @@ map <Leader>mg  :MemoGrep<CR>
 "     },
 "   }
 " }
+" // npm install textlint-rule-preset-ja-technical-writing -g
+" // npm install textlint-rule-preset-jtf-style -g
+" // npm install textlint-rule-prh -g
+" // npm install @textlint-ja/textlint-rule-no-synonyms sudachi-synonyms-dictionary -g
 "
 """""""""""""""""
 
@@ -285,21 +285,21 @@ endif
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 
-"vim-lsp-settingsがのサーバをインストールする先
+"vim-lsp-settingsのサーバインストール先
+"let g:lsp_settings_servers_dir = expand('~/vimfiles/vim-lsp-servers')
 "デフォルトvim-lsp-settingsで導入されるefm-langerverの位置はここ(let g:lsp_settings_servers_dir=<path> )
 " %USERPROFILE%\AppData\Local\vim-lsp-settings\servers\efm-langserver\efm-langserver.exe
-" デフォルトefm-langserverの設定ファイルの位置はここ(efm-langserver -c <config.yaml>)
-" %USERPROFILE%\AppData\Roaming\efm-langserver\config.yaml
-"
+
 "vim-lsp-settingsの設定
-let g:lsp_settings_servers_dir = expand('~/Applications/AppData/Local/vim-lsp-servers')
 let g:lsp_settings = {
       \ 'efm-langserver': {
-      \   'args': ['-c', expand('~/Applications/AppData/Roaming/efm-langserver/config.yaml')],
+      \   'args': ['-c', expand('~/vimfiles/vim-lsp-servers/efm-langserver-config.yaml')],
       \   'disabled': 0,
       \   'allowlist': ['markdown'],
       \  }
       \ }
+" デフォルトefm-langserverの設定ファイルの位置はここ(efm-langserver -c <config.yaml>)
+" %USERPROFILE%\AppData\Roaming\efm-langserver\config.yaml
 "
 """"""""""""""""""""""
 " config.yaml
@@ -332,3 +332,15 @@ augroup lsp_install
   au!
   au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+" Lsp Hignlight color:Pencil
+" Normal         xxx ctermfg=8 ctermbg=15 guifg=#424242 guibg=#F1F1F1
+" Error          xxx term=reverse cterm=bold ctermfg=231 ctermbg=1 gui=bold guifg=#FFFFFF guibg=#C30771
+" Todo           xxx term=standout cterm=bold ctermfg=231 ctermbg=9 gui=bold guifg=#FFFFFF guibg=#fb007a
+" SpellBad       xxx term=reverse cterm=undercurl ctermfg=1 gui=undercurl guifg=#C30771 guisp=#C30771
+" SpellRare      xxx term=reverse cterm=undercurl ctermfg=9 gui=undercurl guifg=#fb007a guisp=#fb007a
+highlight LspErrorHighlight term=reverse cterm=undercurl ctermfg=8 ctermbg=15 gui=undercurl guifg=#424242 guibg=#F1F1F1 guisp=#C30771
+highlight LspWaningHighlight term=reverse cterm=undercurl ctermfg=8 ctermbg=15 gui=undercurl guifg=#5FD7A7 guisp=#5FD7A7 guisp=#fb007a
+highlight link LspErrorText Normal
+highlight link LspWarningText Normal
+
