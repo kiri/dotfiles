@@ -1,3 +1,8 @@
+{
+  "rules": {
+    "@textlint-ja/no-synonyms": {
+      "allows": ["ウェブアプリ", "ウェブアプリケーション"],
+      "preferWords": ["ユーザー"],
       "allowAlphabet": true,
       "allowNumber": true,
       "allowLexeme": true
