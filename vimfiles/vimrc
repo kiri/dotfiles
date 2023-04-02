@@ -37,8 +37,10 @@ set backspace=indent,eol,start
 set ambiwidth=double
 set wildmenu
 
+"内部コード
 set encoding=utf-8
-set fileencodings=iso-20220jp,euc-jp,sjis,utf-8
+"読み込み時コード( 指定して再読み込みは :e ++enc=utf-8)
+set fileencodings=utf-8,sjis,iso-20220jp,euc-jp
 set fileformats=unix,dos,mac
 
 set ignorecase
@@ -206,6 +208,9 @@ map <Leader>mg  :MemoGrep<CR>
 " textlintの実行にnodejs
 " go,nodejsともにインストーラーを使わずにzip形式のバイナリを使う前提
 " go言語とnode.jsのインストールはzip形式展開して適当なフォルダに置く。
+" ちなみにインストーラーでインストールするとインストール先は
+"   C:\Program Files\go
+"   C:\Program Files\nodejs
 "
 " PATHにgo/bin(インストール先の下のbin)とnodejs(=インストール先)と
 " %APPDATA\npm(=C:%USERPROFILE%\AppData\Roaming\npm)を追加する。
@@ -217,55 +222,14 @@ map <Leader>mg  :MemoGrep<CR>
 "   set GOPATH=goのインストール先
 "   set NODE_PATH=nodejs\node_modules
 "
-" ちなみにインストーラーでインストールするとインストール先は
-"   C:\Program Files\go
-"   C:\Program Files\nodejs
-"
-" textlintの設定ファイルの位置
+" textlintの設定ファイル.txtlintrcの位置
 "   %USERPROFILE%\.textlintrc
 "
-""""""""""""""""""""""
-" .textlintrcの内容
-""""""""""""""""""""""
-" {
-"   "filters": {},
-"   "rules": {
-"     // 技術文書向けのtextlintルールプリセット
-"     "preset-ja-technical-writing": {
-"       "ja-no-weak-phrase": false,
-"       "ja-no-mixed-period": false,
-"       "no-exclamation-question-mark": false,
-"       "max-kanji-continuous-len": {
-"         "max": 6,
-"         "allow": ["東京都特許許可局"]
-"       }
-"     },
-"     // JTF日本語標準スタイルガイド
-"     "preset-jtf-style": true,
-"     // textlint rule for prh/prh: proofreading helper.
-"     //"prh": false,
-"     "prh": {
-"       "rulePaths" :[
-"       "~/prh/prh-rules/media/techbooster.yml",
-"       "~/prh/prh-rules/media/WEB+DB_PRESS.yml"
-"       ]
-"       },
-"     // 同義語を表記ゆれをチェックするtextlintルール
-"     "@textlint-ja/no-synonyms": {
-"       //許可するワードの配列(無視する)
-"       "allows": ["ウェブアプリ", "ウェブアプリケーション"],
-"       //使用を許可する見出し語の配列(これ以外の同義語をエラーにする)
-"       "preferWords": ["ユーザー"],
-"       "allowAlphabet": false,
-"       "allowNumber": false,
-"       "allowLexeme": false
-"     },
-"   }
-" }
-" // npm install textlint-rule-preset-ja-technical-writing -g
-" // npm install textlint-rule-preset-jtf-style -g
-" // npm install textlint-rule-prh -g
-" // npm install @textlint-ja/textlint-rule-no-synonyms sudachi-synonyms-dictionary -g
+" textlintのインストール
+"  npm install textlint-rule-preset-ja-technical-writing -g
+"  npm install textlint-rule-preset-jtf-style -g
+"  npm install textlint-rule-prh -g
+"  npm install @textlint-ja/textlint-rule-no-synonyms sudachi-synonyms-dictionary -g
 "
 """""""""""""""""
 
@@ -286,38 +250,22 @@ endif
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 
 "vim-lsp-settingsのサーバインストール先
-"let g:lsp_settings_servers_dir = expand('~/vimfiles/vim-lsp-servers')
-"デフォルトvim-lsp-settingsで導入されるefm-langerverの位置はここ(let g:lsp_settings_servers_dir=<path> )
+"デフォルトvim-lsp-settingsで導入されるefm-langerverの位置はここ
 " %USERPROFILE%\AppData\Local\vim-lsp-settings\servers\efm-langserver\efm-langserver.exe
+"インストール先を変えるならlet g:lsp_settings_servers_dir=<path> に設定する
+"let g:lsp_settings_servers_dir = expand('~/vimfiles/vim-lsp-servers')
 
-"vim-lsp-settingsの設定
+" vimrcのvim-lsp-settingsの設定
 let g:lsp_settings = {
       \ 'efm-langserver': {
-      \   'args': ['-c', expand('~/vimfiles/vim-lsp-servers/efm-langserver-config.yaml')],
       \   'disabled': 0,
       \   'allowlist': ['markdown'],
       \  }
       \ }
-" デフォルトefm-langserverの設定ファイルの位置はここ(efm-langserver -c <config.yaml>)
+
+" デフォルトefm-langserverの設定ファイルconfigの位置はここ
 " %USERPROFILE%\AppData\Roaming\efm-langserver\config.yaml
-"
-""""""""""""""""""""""
-" config.yaml
-""""""""""""""""""""""
-"version: 2
-"tools:
-"  markdown-textlint: &markdown-textlint
-"    lint-command: 'npx textlint  -f unix --stdin --stdin-filename ${INPUT}'
-"    lint-stdin: true
-"    lint-ignore-exit-code: true
-"    lint-formats:
-"      - '%f:%l:%c: %m [%trror/%r]'
-"    root-markers:
-"      - .textlintrc
-"languages:
-"  markdown:
-"    - <<: *markdown-textlint
-""""""""""""""""""""""
+"(efm-langserver -c <config.yaml>)
 "
 function! s:on_lsp_buffer_enabled() abort
   setlocal completeopt=menu
