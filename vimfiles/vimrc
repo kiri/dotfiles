@@ -234,7 +234,7 @@ map <Leader>mg  :MemoGrep<CR>
 """""""""""""""""
 
 let g:lsp_diagnostics_signs_enabled = 1
-let g:lsp_diagnostics_signs_error = {"text": "💩"}
+let g:lsp_diagnostics_signs_error = {"text": "🐾"}
 let g:lsp_diagnostics_signs_warning = {"text": "👻"}
 let g:lsp_diagnostics_signs_information = {"text": "❗"}
 let g:lsp_diagnostics_signs_hint = {"text": "❓"}
