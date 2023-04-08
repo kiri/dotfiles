@@ -225,22 +225,15 @@ map <Leader>mg  :MemoGrep<CR>
 " textlintの設定ファイル.txtlintrcの位置
 "   %USERPROFILE%\.textlintrc
 "
-" textlintのインストール
-"  npm install textlint-rule-preset-ja-technical-writing -g
-"  npm install textlint-rule-preset-jtf-style -g
-"  npm install textlint-rule-prh -g
-"  npm install @textlint-ja/textlint-rule-no-synonyms sudachi-synonyms-dictionary -g
-"
-"""""""""""""""""
 
 let g:lsp_diagnostics_signs_enabled = 1
-let g:lsp_diagnostics_signs_error = {"text": "🐾"}
-let g:lsp_diagnostics_signs_warning = {"text": "👻"}
-let g:lsp_diagnostics_signs_information = {"text": "❗"}
-let g:lsp_diagnostics_signs_hint = {"text": "❓"}
+let g:lsp_diagnostics_signs_error = {"text": "e>"}
+let g:lsp_diagnostics_signs_warning = {"text": "w>"}
+let g:lsp_diagnostics_signs_information = {"text": "i>"}
+let g:lsp_diagnostics_signs_hint = {"text": "h>"}
 
 let g:lsp_document_code_action_signs_enabled = 1
-let g:lsp_document_code_action_signs_hint = {"text": "❓"}
+let g:lsp_document_code_action_signs_hint = {"text": "h>"}
 if !has('nvim')
   let g:lsp_diagnostics_float_cursor = 1
 endif
@@ -292,3 +285,18 @@ highlight LspWaningHighlight term=reverse cterm=undercurl ctermfg=8 ctermbg=15 g
 highlight link LspErrorText Normal
 highlight link LspWarningText Normal
 
+" BASH
+function! GitBash()
+  let l:option = {
+        \ 'term_name': 'Git',
+        \ 'term_finish': 'close',
+        \ 'curwin': v:false,
+        \ 'cwd': $USERPROFILE,
+        \ }
+
+  let l:terminal_buf=term_start('C:/Program Files/Git/bin/bash.exe', l:option)
+  call term_sendkeys(l:terminal_buf, "export LANG=\"ja_JP.utf-8\"\<CR>")
+  call term_sendkeys(l:terminal_buf, "clear\<CR>")
+
+endfunction
+nnoremap <Leader>g :<C-u>call GitBash()<CR>
