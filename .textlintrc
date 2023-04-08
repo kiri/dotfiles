@@ -8,85 +8,45 @@
       "allowLexeme": true
     },
 
-    "preset-ja-technical-writing": {
-      "sentence-length": { "max": 100 },
-      "max-comma": { "max": 3 },
-      "preset-ja-technical-writing": { "max-ten": { "max": 3 } },
-      "max-kanji-continuous-len": {
-        "max": 6,
-        "allow": ["東京都特許許可局","国立国際美術館"]
-      },
-      "arabic-kanji-numbers": true,
-      "no-mix-dearu-desumasu": {
-        "preferInHeader": "である",
-        "preferInBody": "である",
-        "preferInList": "である",
-        "strict": true
-      },
-      "ja-no-mixed-period": { "periodMark": "。" },
-      "no-double-negative-ja": true,
-      "no-dropping-the-ra": true,
-      "no-doubled-conjunctive-particle-ga": true,
-      "no-doubled-conjunction": true,
-      "no-doubled-joshi": { "min_interval": 1 },
-      "no-nfd": true,
-      "no-invalid-control-character": true,
-      "no-zero-width-spaces": true,
-      "no-exclamation-question-mark": true,
-      "no-hankaku-kana": true,
-      "ja-no-weak-phrase": false,
-      "ja-no-successive-word": true,
-      "ja-no-abusage": true,
-      "ja-no-redundant-expression": true,
-      "ja-unnatural-alphabet": true,
-      "no-unmatched-pair": true
-    },
-
-    "preset-jtf-style": {
-      "1.1.1.本文": true,
-      "1.1.2.見出し": true,
-      "1.1.3.箇条書き": true,
-      "1.1.5.図表のキャプション": true,
-      "1.2.1.句点(。)と読点(、)": true,
-      "1.2.2.ピリオド(.)とカンマ(,)": true,
-      "2.1.2.漢字": false,
-      "2.1.5.カタカナ": false,
-      "2.1.6.カタカナの長音": false,
-      "2.1.8.算用数字": true,
-      "2.1.9.アルファベット": true,
-      "2.1.10.算用数字の位取りの表記": true,
-      "2.2.1.ひらがなと漢字の使い分け": false,
-      "2.2.2.算用数字と漢数字の使い分け": true,
-      "2.2.3.一部の助数詞の表記": true,
-      "3.1.1.全角文字と半角文字の間": true,
-      "3.1.2.全角文字どうし": true,
-      "3.2.カタカナ語間のスペースの有無": true,
-      "3.3.かっこ類と隣接する文字の間のスペースの有無": true,
-      "4.1.1.句点(。)": true,
-      "4.1.3.ピリオド(.)、カンマ(,)": true,
-      "4.2.1.感嘆符(！)": true,
-      "4.2.2.疑問符(？)": true,
-      "4.2.4.中黒(・)": true,
-      "4.2.5.波線(〜)": true,
-      "4.2.6.ハイフン(-)": true,
-      "4.2.7.コロン(：)": true,
-      "4.2.8.セミコロン(;)": true,
-      "4.2.9.ダッシュ(-)": true,
-      "4.3.1.丸かっこ（）": true,
-      "4.3.2.大かっこ［］": true,
-      "4.3.3.かぎかっこ「」": true,
-      "4.3.4.二重かぎかっこ『』": true,
-      "4.3.5.二重引用符": true,
-      "4.3.6.中かっこ{ }": true,
-      "4.3.7.山かっこ<>": true,
-      "4.3.8.一重引用符": true
-    },
-
     "prh": {
       "rulePaths" :[
         "~/prh/prh-rules/media/techbooster.yml",
-        "~/prh/prh-rules/media/WEB+DB_PRESS.yml"
+        "~/prh/prh-rules/media/WEB+DB_PRESS.yml",
+        "~/prh/textlint-rule-preset-icsmedia-master/dict/prh.yml"
       ]
+    },
+
+    "preset-japanese": {
+      "max-ten": {
+        "max": 3
+      },
+      "no-doubled-conjunctive-particle-ga": true,
+      "no-doubled-conjunction": true,
+      "no-double-negative-ja": true,
+      "no-doubled-joshi": {
+        "min_interval": 1
+      },
+      "sentence-length": {
+        "max": 100
+      },
+      "no-dropping-the-ra": true,
+      "no-mix-dearu-desumasu": true,
+      "no-nfd": true,
+      "no-invalid-control-character": true,
+      "no-zero-width-spaces": true,
+      "no-kangxi-radicals": true
+    },
+
+    "preset-ja-spacing": {
+      "ja-nakaguro-or-halfwidth-space-between-katakana": true,
+      "ja-no-space-around-parentheses": true,
+      "ja-no-space-between-full-width": true,
+      "ja-space-between-half-and-full-width": {
+        "space": "never"
+      },
+      "ja-space-after-exclamation": true,
+      "ja-space-after-question": true,
+      "ja-space-around-code": false
     }
   }
 }
