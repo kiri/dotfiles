@@ -153,15 +153,9 @@ require('jetpack.paq') {
   {'nvim-tree/nvim-web-devicons'}, -- option nvim-tree 
   {'goolord/alpha-nvim'}, -- スタート画面設定
   {'windwp/nvim-autopairs'},
-}
-local jetpack = require('jetpack')
-for _, name in ipairs(jetpack.names()) do
-  if not jetpack.tap(name) then
-    jetpack.sync()
-    break
-  end
-end
 
+  {'glidenote/memolist.vim'},
+}
 -- fefine
 -- https://github.com/freddiehaddad/feline.nvim
 require('feline').setup()
@@ -296,6 +290,13 @@ require'alpha'.setup(require'alpha.themes.startify'.config)
 -- nvim-autopairs
 require("nvim-autopairs").setup {}
 
+-- memolist
+vim.g.memolist_path="~/OneDrive/vim-memolist"
+vim.g.memolist_memo_suffix = "md"
+vim.g.memolist_template_dir_path="~/OneDrive/vim-memolist"
+vim.keymap.set('','<Leader>mn',':MemoNew<CR>')
+vim.keymap.set('','<Leader>ml',':MemoList<CR>')
+vim.keymap.set('','<Leader>mg',':MemoGrep<CR>')
 
 -- フォントの幅を調整
 -- https://zenn.dev/laddge/articles/369ee2672b4424
@@ -338,5 +339,17 @@ table.insert(cellwidths, { 0x276c, 0x2771, 1 })
 -- Box Drawing
 table.insert(cellwidths, { 0x2500, 0x259f, 1 })
 vim.fn.setcellwidths(cellwidths)
+--
+--
+
+--
+--
+local jetpack = require('jetpack')
+for _, name in ipairs(jetpack.names()) do
+  if not jetpack.tap(name) then
+    jetpack.sync()
+    break
+  end
+end
 --
 --
