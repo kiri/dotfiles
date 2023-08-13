@@ -26,9 +26,23 @@ Plug 'rhysd/vim-healthcheck'
 Plug 'yasukotelin/shirotelin'
 Plug 'preservim/vim-colors-pencil'
 Plug 'yami-beta/lightline-pencil.vim'
+
+""Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'mhinz/vim-startify'
+Plug 'EdenEast/nightfox.nvim'
+
+"https://github.com/tpope/vim-surround
+Plug 'tpope/vim-surround'
+"https://github.com/jiangmiao/auto-pairs
+Plug 'jiangmiao/auto-pairs'
+
 call plug#end()
 
 "
+set lines=32
+set columns=120
+
 set nocompatible
 set nowritebackup
 set nobackup
@@ -55,10 +69,13 @@ set showmatch matchtime=1
 set cinoptions+=:0
 set cmdheight=2
 set laststatus=2
+set signcolumn=yes
+
 set showcmd
 set display=lastline
 set list
 set listchars=tab:^\ ,trail:~
+
 set history=10000
 hi Comment ctermfg=3
 set shiftwidth=0
@@ -79,12 +96,11 @@ set clipboard=unnamed,autoselect
 
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
 nnoremap k gk
-nnoremap gk k
 nnoremap j gj
+nnoremap gk k
 nnoremap gj j
-set nojoinspaces
-"nnoremap J gJ
-"nnoremap gJ J
+nnoremap J gJ
+nnoremap gJ J
 
 syntax on
 set nrformats=
@@ -92,12 +108,15 @@ set whichwrap=b,s,h,l<,>,[,],~
 set mouse=a
 set visualbell
 
-"set background=dark
-set background=light
+set background=dark
+"set background=light
+
 "colorscheme desert
 "colorscheme toast
 "colorscheme shirotelin
-colorscheme pencil
+"colorscheme pencil
+colorscheme dayfox
+"colorscheme duskfox
 set termguicolors
 
 set rop=type:directx
@@ -108,25 +127,14 @@ set sidescroll=1
 set cursorline
 "set guifont=HackGen_Console:h14:cSHIFTJIS:qDRAFT
 
+set confirm
+
 " vim-auto-save
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
-"let g:lightline = {
-"      \ 'colorscheme': 'wombat'
-"      \ }
-
-"let g:lightline = {
-"      \ 'colorscheme': 'powerline',
-"      \ 'active': {
-"      \   'left': [ [ 'mode', 'paste' ],
-"      \             [  'readonly', 'filename', 'modified' ] ]
-"      \ },
-"      \ }
-
-"\ 'colorscheme': 'wombat',
-       " \ 'colorscheme': 'shirotelin',
+" Lightline
 let g:lightline = {
-        \ 'colorscheme': 'pencil_light',
+        \ 'colorscheme': 'dayfox',
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -185,7 +193,7 @@ function! LightlineMode()
 endfunction
 
 let mapleader="\<Space>"
-let g:memolist_path="~/OneDrive/vim-memolist"
+let g:memolist_path="$USERPROFILE/OneDrive/vim-memolist"
 let g:memolist_memo_suffix = "md"
 let g:memolist_template_dir_path="~/OneDrive/vim-memolist"
 let g:auto_save=1
@@ -300,3 +308,12 @@ function! GitBash()
 
 endfunction
 nnoremap <Leader>g :<C-u>call GitBash()<CR>
+
+" https://note.com/yasukotelin/n/na87dc604e042
+" 補完表示時のEnterで改行をしない
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+
+set completeopt=menuone,noinsert
+inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
+inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
+
