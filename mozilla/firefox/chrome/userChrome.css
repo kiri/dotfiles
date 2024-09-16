@@ -1,0 +1,9 @@
+.tabbrowser-tab[selected="true"]:not([pinned]) {
+    min-width: 225px !important;
+}
+.tabbrowser-tab:not([selected="true"]):not([pinned]) {
+    min-width: 125px !important;
+}
+/*.tabbrowser-tab:not([selected="true"]):not([pinned]):hover {
+    min-width: 225px !important;
+}*/
