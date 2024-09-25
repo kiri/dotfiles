@@ -1,29 +1,6 @@
 -- init.lua
--- dofile("D:/OneDrive/share/config/nvim/init.lua")
 if vim.g.vscode then
   local vscode = require('vscode-neovim')
-
-  vim.keymap.set('n', 'k', function()
-    local count = vim.v.count > 0 and vim.v.count or 1
-    vscode.action('cursorMove', {
-      args = {
-        to = 'up',
-        by = 'wrappedLine',
-        value = count
-      },
-    },{ expr = true })
-  end)
-
-  vim.keymap.set('n', 'j', function()
-    local count = vim.v.count > 0 and vim.v.count or 1
-    vscode.action('cursorMove', {
-      args = {
-        to = 'down',
-        by = 'wrappedLine',
-        value = count
-      },
-    },{ expr = true })
-  end)
 
 else
     vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true })
@@ -59,35 +36,16 @@ vim.opt.clipboard:append { 'unnamedplus' }
 vim.o.ttimeout = true
 vim.o.ttimeoutlen = 50
 
+require('plugins')
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "plugins.lua" },
+  command = "PackerCompile",
+})
+
+vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
 
 local zenhan_manager = require('zenhan')
-
--- 必要に応じて、モジュールの変数や関数にアクセスできます
 print(zenhan_manager.IM)  -- 現在のIMの状態を表示
 
-
---[[
-IM = 0
-local zenhan = os.getenv("LOCALAPPDATA") .. '/zenhan/bin64/zenhan.exe'
-print(zenhan)
-vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
-    pattern = { "*" },
-    callback = function() os.execute(zenhan .. ' ' .. IM) end
-})
-vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
-    pattern = { "*" },
-    callback = function()
-        local handle = io.popen(zenhan .. ' 0', "r")
-        if (handle) then
-            IM = handle:read("*all")
-            handle:close()
-        end
-    end
-})
-vim.api.nvim_create_autocmd({ 'CmdlineLeave' }, {
-    pattern = { "*" },
-    callback = function() os.execute(zenhan .. ' 0') end
-})
-]]
-
 vim.notify('initialization complated')
+
