@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\feline.nvim",
     url = "https://github.com/feline-nvim/feline.nvim"
   },
+  ["memolist.vim"] = {
+    loaded = true,
+    path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\memolist.vim",
+    url = "https://github.com/glidenote/memolist.vim"
+  },
   ["nord.nvim"] = {
     loaded = true,
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nord.nvim",
