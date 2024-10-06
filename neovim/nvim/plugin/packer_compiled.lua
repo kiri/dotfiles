@@ -79,10 +79,10 @@ _G.packer_plugins = {
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\auto-save.nvim",
     url = "https://github.com/Pocco81/auto-save.nvim"
   },
-  ["feline.nvim"] = {
+  ["lightline.vim"] = {
     loaded = true,
-    path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\feline.nvim",
-    url = "https://github.com/feline-nvim/feline.nvim"
+    path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lightline.vim",
+    url = "https://github.com/itchyny/lightline.vim"
   },
   ["memolist.vim"] = {
     loaded = true,

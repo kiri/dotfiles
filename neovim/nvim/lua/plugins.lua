@@ -48,7 +48,7 @@ return packer.startup(function(use)
     use({'mhinz/vim-startify'})
     use('glidenote/memolist.vim')
 
-    use('feline-nvim/feline.nvim')
+    use('itchyny/lightline.vim')
     use('shaunsingh/nord.nvim')
 
     -- Automatically set up your configuration after cloning packer.nvim
