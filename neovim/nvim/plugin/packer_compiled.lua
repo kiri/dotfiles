@@ -75,16 +75,19 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["auto-save.nvim"] = {
+    config = { "\27LJ\2\n]\0\0\6\0\6\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0004\5\0\0B\0\5\1K\0\1\0\18:ASToggle<CR>\14<leader>n\6n\20nvim_set_keymap\bapi\bvim\0" },
     loaded = true,
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\auto-save.nvim",
     url = "https://github.com/Pocco81/auto-save.nvim"
   },
   ["lightline.vim"] = {
+    config = { "\27LJ\2\n?\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\0\1\16colorscheme\tnord\14lightline\6g\bvim\0" },
     loaded = true,
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lightline.vim",
     url = "https://github.com/itchyny/lightline.vim"
   },
   ["memolist.vim"] = {
+    config = { "\27LJ\2\n \1\0\0\2\0\t\0\0176\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\0\0=\1\6\0006\0\0\0009\0\1\0'\1\b\0=\1\a\0K\0\1\0\30~/.memolist/memotemplates\31memolist_template_dir_path\17memolist_fzf\amd\25memolist_memo_suffix\21~/.memolist/memo\18memolist_path\6g\bvim\0" },
     loaded = true,
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\memolist.vim",
     url = "https://github.com/glidenote/memolist.vim"
@@ -107,6 +110,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: auto-save.nvim
+time([[Config for auto-save.nvim]], true)
+try_loadstring("\27LJ\2\n]\0\0\6\0\6\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0004\5\0\0B\0\5\1K\0\1\0\18:ASToggle<CR>\14<leader>n\6n\20nvim_set_keymap\bapi\bvim\0", "config", "auto-save.nvim")
+time([[Config for auto-save.nvim]], false)
+-- Config for: lightline.vim
+time([[Config for lightline.vim]], true)
+try_loadstring("\27LJ\2\n?\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\0\1\16colorscheme\tnord\14lightline\6g\bvim\0", "config", "lightline.vim")
+time([[Config for lightline.vim]], false)
+-- Config for: memolist.vim
+time([[Config for memolist.vim]], true)
+try_loadstring("\27LJ\2\n \1\0\0\2\0\t\0\0176\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\0\0=\1\6\0006\0\0\0009\0\1\0'\1\b\0=\1\a\0K\0\1\0\30~/.memolist/memotemplates\31memolist_template_dir_path\17memolist_fzf\amd\25memolist_memo_suffix\21~/.memolist/memo\18memolist_path\6g\bvim\0", "config", "memolist.vim")
+time([[Config for memolist.vim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

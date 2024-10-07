@@ -42,14 +42,28 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
     -- Packer can manage itself
-    use({ 'wbthomason/packer.nvim'})
-    use({ 'Pocco81/auto-save.nvim'})
-
+    use({'wbthomason/packer.nvim'})
+    use({
+        'Pocco81/auto-save.nvim', 
+        config=function() 
+            vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
+        end, })
     use({'mhinz/vim-startify'})
-    use('glidenote/memolist.vim')
+    use({
+        'glidenote/memolist.vim', 
+        config = function() 
+            vim.g.memolist_path = "~/.memolist/memo"
+            vim.g.memolist_memo_suffix = "md"
+            vim.g.memolist_fzf = 0
+            vim.g.memolist_template_dir_path = "~/.memolist/memotemplates"
+        end, })
 
-    use('itchyny/lightline.vim')
     use('shaunsingh/nord.nvim')
+    use({
+        'itchyny/lightline.vim',
+        config = function()
+            vim.g.lightline={colorscheme='nord'}
+        end, })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
