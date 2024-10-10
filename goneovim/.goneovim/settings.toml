@@ -69,7 +69,7 @@ RestoreWindowGeometry = false
 ## In Linux
 # FontFamily = "Consolas"
 ## In Windows
-FontFamily = "HackGen35, BIZ UDゴシック, Windows"
+FontFamily = "HackGen35 Console NF, HackGen35, BIZ UDゴシック, Windows"
 ## Fontsize is
 FontSize = 14
 ## FontWeight specifis the glyph weight for the configured font family.

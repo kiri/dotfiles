@@ -80,14 +80,13 @@ _G.packer_plugins = {
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\auto-save.nvim",
     url = "https://github.com/Pocco81/auto-save.nvim"
   },
-  ["lightline.vim"] = {
-    config = { "\27LJ\2\n?\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\0\1\16colorscheme\tnord\14lightline\6g\bvim\0" },
+  ["lualine.nvim"] = {
     loaded = true,
-    path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lightline.vim",
-    url = "https://github.com/itchyny/lightline.vim"
+    path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["memolist.vim"] = {
-    config = { "\27LJ\2\n \1\0\0\2\0\t\0\0176\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\0\0=\1\6\0006\0\0\0009\0\1\0'\1\b\0=\1\a\0K\0\1\0\30~/.memolist/memotemplates\31memolist_template_dir_path\17memolist_fzf\amd\25memolist_memo_suffix\21~/.memolist/memo\18memolist_path\6g\bvim\0" },
+    config = { "\27LJ\2\nä\3\0\0\6\0\18\0)6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\0\0=\1\6\0006\0\0\0009\0\1\0'\1\b\0=\1\a\0006\0\0\0009\0\t\0009\0\n\0'\2\v\0'\3\f\0'\4\r\0004\5\0\0B\0\5\0016\0\0\0009\0\t\0009\0\n\0'\2\v\0'\3\14\0'\4\15\0004\5\0\0B\0\5\0016\0\0\0009\0\t\0009\0\n\0'\2\v\0'\3\16\0'\4\17\0004\5\0\0B\0\5\1K\0\1\0\18:MemoGrep<CR>\15<leader>mg\18:MemoList<CR>\15<leader>ml\17:MemoNew<CR>\15<leader>mn\6n\20nvim_set_keymap\bapi\30~/.memolist/memotemplates\31memolist_template_dir_path\17memolist_fzf\amd\25memolist_memo_suffix\21~/.memolist/memo\18memolist_path\6g\bvim\0" },
     loaded = true,
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\memolist.vim",
     url = "https://github.com/glidenote/memolist.vim"
@@ -96,6 +95,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nord.nvim",
     url = "https://github.com/shaunsingh/nord.nvim"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "C:\\Users\\tohru\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -114,13 +119,9 @@ time([[Defining packer_plugins]], false)
 time([[Config for auto-save.nvim]], true)
 try_loadstring("\27LJ\2\n]\0\0\6\0\6\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0'\4\5\0004\5\0\0B\0\5\1K\0\1\0\18:ASToggle<CR>\14<leader>n\6n\20nvim_set_keymap\bapi\bvim\0", "config", "auto-save.nvim")
 time([[Config for auto-save.nvim]], false)
--- Config for: lightline.vim
-time([[Config for lightline.vim]], true)
-try_loadstring("\27LJ\2\n?\0\0\2\0\4\0\0056\0\0\0009\0\1\0005\1\3\0=\1\2\0K\0\1\0\1\0\1\16colorscheme\tnord\14lightline\6g\bvim\0", "config", "lightline.vim")
-time([[Config for lightline.vim]], false)
 -- Config for: memolist.vim
 time([[Config for memolist.vim]], true)
-try_loadstring("\27LJ\2\n \1\0\0\2\0\t\0\0176\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\0\0=\1\6\0006\0\0\0009\0\1\0'\1\b\0=\1\a\0K\0\1\0\30~/.memolist/memotemplates\31memolist_template_dir_path\17memolist_fzf\amd\25memolist_memo_suffix\21~/.memolist/memo\18memolist_path\6g\bvim\0", "config", "memolist.vim")
+try_loadstring("\27LJ\2\nä\3\0\0\6\0\18\0)6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\0009\0\1\0'\1\5\0=\1\4\0006\0\0\0009\0\1\0)\1\0\0=\1\6\0006\0\0\0009\0\1\0'\1\b\0=\1\a\0006\0\0\0009\0\t\0009\0\n\0'\2\v\0'\3\f\0'\4\r\0004\5\0\0B\0\5\0016\0\0\0009\0\t\0009\0\n\0'\2\v\0'\3\14\0'\4\15\0004\5\0\0B\0\5\0016\0\0\0009\0\t\0009\0\n\0'\2\v\0'\3\16\0'\4\17\0004\5\0\0B\0\5\1K\0\1\0\18:MemoGrep<CR>\15<leader>mg\18:MemoList<CR>\15<leader>ml\17:MemoNew<CR>\15<leader>mn\6n\20nvim_set_keymap\bapi\30~/.memolist/memotemplates\31memolist_template_dir_path\17memolist_fzf\amd\25memolist_memo_suffix\21~/.memolist/memo\18memolist_path\6g\bvim\0", "config", "memolist.vim")
 time([[Config for memolist.vim]], false)
 
 _G._packer.inside_compile = false

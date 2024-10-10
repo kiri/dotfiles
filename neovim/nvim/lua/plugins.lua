@@ -56,14 +56,21 @@ return packer.startup(function(use)
             vim.g.memolist_memo_suffix = "md"
             vim.g.memolist_fzf = 0
             vim.g.memolist_template_dir_path = "~/.memolist/memotemplates"
+            vim.api.nvim_set_keymap("n", "<leader>mn", ":MemoNew<CR>", {})
+            vim.api.nvim_set_keymap("n", "<leader>ml", ":MemoList<CR>", {})
+            vim.api.nvim_set_keymap("n", "<leader>mg", ":MemoGrep<CR>", {})
         end, })
 
     use('shaunsingh/nord.nvim')
     use({
-        'itchyny/lightline.vim',
-        config = function()
-            vim.g.lightline={colorscheme='nord'}
-        end, })
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    })
+--    use({
+--        'itchyny/lightline.vim',
+--        config = function()
+--            vim.g.lightline={colorscheme='nord'}
+--        end, })
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
