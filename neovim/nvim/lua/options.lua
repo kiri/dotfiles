@@ -1,5 +1,8 @@
-
+--
 vim.o.encoding = 'utf-8'
+vim.scriptencoding = 'utf-8'
+
+--
 vim.o.fileencoding = 'utf-8'
 vim.o.fileencodings = 'utf-8,cp932'
 --vim.o.ambiwidth = 'double'

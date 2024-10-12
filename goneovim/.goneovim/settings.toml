@@ -21,7 +21,7 @@ EnableBackgroundBlur = true
 ## Editor minimum window width (>= 400)
 Width = 1600
 ## Editor minimum window height (>= 300)
-Height = 800
+Height = 1600
 ## Margin adds a margin between the window and the drawn content.
 ## This value is 0 by default for Linux and 2 by default for MacOS and Windows.
 # Margin = 0
@@ -59,7 +59,7 @@ Transparent = 0.95
 
 ## Enable the ability to remember the last window geometry that was displayed
 ## and restore it at the next startup.
-RestoreWindowGeometry = false
+RestoreWindowGeometry = true
 
 ## Editor external font-family, font-siz.
 ## This is the font settings of the graphical UI as an nvim front end.

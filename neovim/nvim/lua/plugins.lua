@@ -1,80 +1,73 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
---
--- Automatically install packer
-local install_path = vim.fn.stdpath ("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = vim.fn.system ({
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    vim.fn.system({
         "git",
         "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
     })
-    print("Installing packer close and reopen Neovim...")
-    vim.cmd( [[packadd packer.nvim]])
 end
+vim.opt.rtp:prepend(lazypath)
 
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-    augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-    augroup end
-]])
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-    return
-end
-
--- Have packer use a popup window
-packer.init({
-    display = {
-        open_fn = function()
-            return require("packer.util").float({ border = "rounded" })
+require("lazy").setup({
+    {
+        "folke/noice.nvim",
+        lazy = true,
+        --event = "VeryLazy",
+        opts = {
+            -- add any options here
+        },
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        }
+    },
+    {
+        'Pocco81/auto-save.nvim', 
+        event = "InsertEnter",
+        config =function() 
+            vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
         end,
     },
-})
-
--- Install your plugins here
-return packer.startup(function(use)
-    -- Packer can manage itself
-    use({'wbthomason/packer.nvim'})
-    use({
-        'Pocco81/auto-save.nvim', 
-        config=function() 
-            vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
-        end, })
-    use({'mhinz/vim-startify'})
-    use({
+    {'mhinz/vim-startify', lazy=false},
+    {
         'glidenote/memolist.vim', 
+        keys = {
+            { "<leader>mn", ":MemoNew<CR>" },
+            { "<leader>ml", ":MemoList<CR>" },
+            { "<leader>mg", ":MemoGrep<CR>" },
+        },
         config = function() 
             vim.g.memolist_path = "~/.memolist/memo"
             vim.g.memolist_memo_suffix = "md"
             vim.g.memolist_fzf = 0
             vim.g.memolist_template_dir_path = "~/.memolist/memotemplates"
-            vim.api.nvim_set_keymap("n", "<leader>mn", ":MemoNew<CR>", {})
-            vim.api.nvim_set_keymap("n", "<leader>ml", ":MemoList<CR>", {})
-            vim.api.nvim_set_keymap("n", "<leader>mg", ":MemoGrep<CR>", {})
-        end, })
-
-    use('shaunsingh/nord.nvim')
-    use({
+            --vim.api.nvim_set_keymap("n", "<leader>mn", ":MemoNew<CR>", {})
+            --vim.api.nvim_set_keymap("n", "<leader>ml", ":MemoList<CR>", {})
+            --vim.api.nvim_set_keymap("n", "<leader>mg", ":MemoGrep<CR>", {})
+        end, 
+    },
+    {
+        'shaunsingh/nord.nvim',
+        lazy = false,
+        -- priority = 1000,
+        config = function()
+            vim.cmd[[colorscheme nord]]
+        end,
+    },
+    {
         'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-    })
---    use({
---        'itchyny/lightline.vim',
---        config = function()
---            vim.g.lightline={colorscheme='nord'}
---        end, })
+        config = true,
+        dependencies = {
+            'nvim-tree/nvim-web-devicons' 
+        },
+    }
 
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-end)
+})
+

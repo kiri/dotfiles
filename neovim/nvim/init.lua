@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 --
-vim.cmd[[colorscheme nord]]
+--vim.cmd[[colorscheme nord]]
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -55,6 +55,8 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+--vim.cmd('GonvimResize "1000x1000"')
 
 --local zenhan_manager = require('zenhan')
 --print(zenhan_manager.IM)  -- 現在のIMの状態を表示
