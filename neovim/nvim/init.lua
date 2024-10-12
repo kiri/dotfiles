@@ -1,17 +1,7 @@
 -- init.lua
-if vim.g.vscode then
-  local vscode = require('vscode-neovim')
-  require('options')
-else
-  require('options')
-  require('keymaps')
-end
-
+require('options')
+require('keymaps')
 require('plugins')
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = { "plugins.lua" },
-  command = "PackerCompile",
-})
 
 --
 --vim.cmd[[colorscheme nord]]
