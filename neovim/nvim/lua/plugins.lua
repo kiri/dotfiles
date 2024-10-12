@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {
         "folke/noice.nvim",
-        lazy = true,
         --event = "VeryLazy",
         opts = {
             -- add any options here
@@ -35,7 +34,7 @@ require("lazy").setup({
             vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
         end,
     },
-    {'mhinz/vim-startify', lazy=false},
+    {'mhinz/vim-startify', lazy = false},
     {
         'glidenote/memolist.vim', 
         keys = {
