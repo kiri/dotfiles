@@ -48,7 +48,7 @@ require('lualine').setup {
 
 --vim.cmd('GonvimResize "1000x1000"')
 
---local zenhan_manager = require('zenhan')
+local zenhan_manager = require('zenhan')
 --print(zenhan_manager.IM)  -- 現在のIMの状態を表示
 
 --vim.notify('initialization complated')
