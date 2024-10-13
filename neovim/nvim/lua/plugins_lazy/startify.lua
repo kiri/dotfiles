@@ -1,4 +1,4 @@
 return {
     'mhinz/vim-startify',
-    lazy = false
+    event = "VimEnter",
 }
