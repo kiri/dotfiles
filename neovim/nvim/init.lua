@@ -46,6 +46,11 @@ require('lualine').setup {
   extensions = {}
 }
 
+-- Terminal
+vim.api.nvim_create_autocmd({"TermOpen"}, { pattern = {"*"}, command = ":startinsert", })
+vim.api.nvim_create_autocmd({"TermOpen"}, { pattern = {"*"}, command = "setlocal norelativenumber", })
+vim.api.nvim_create_autocmd({"TermOpen"}, { pattern = {"*"}, command = "setlocal nonumber", })
+
 --vim.cmd('GonvimResize "1000x1000"')
 
 local zenhan_manager = require('zenhan')
