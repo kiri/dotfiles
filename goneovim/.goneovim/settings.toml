@@ -143,7 +143,8 @@ FontSize = 14
 ##    "cmdline_normal", "cmdline_insert", "cmdline_replace",
 ##    "terminal"
 # ModeEnablingIME = []
-#ModeEnablingIME = ["insert", "cmdline_normal"]
+# ModeEnablingIME = ["insert", "cmdline_normal"]
+ModeEnablingIME = ["insert", "replace", "cmdline_normal", "cmdline_insert", "cmdline_replace", "terminal" ]
 
 ## This option allows you to hide the mouse cursor in the gooneovim window 
 ## when you type a key, and to redisplay it when you move the mouse cursor again. 

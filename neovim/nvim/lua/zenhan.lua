@@ -27,6 +27,13 @@ vim.api.nvim_create_autocmd({ 'InsertLeave' },
     end
 })
 
+vim.api.nvim_create_autocmd({ 'CmdlineEnter' }, 
+{
+    pattern = { "*" },
+    callback = function()
+        vim.fn.system(zenhan .. ' 0')
+    end
+})
 vim.api.nvim_create_autocmd({ 'CmdlineLeave' }, 
 {
     pattern = { "*" },
