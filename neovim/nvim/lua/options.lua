@@ -28,7 +28,6 @@ vim.o.smartindent = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.autochdir = true
-vim.o.clipboard = 'unnamedplus'
 vim.o.wildmode = 'full'
 vim.o.visualbell = true
 vim.o.showmatch = true

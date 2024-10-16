@@ -3,6 +3,9 @@ require('options')
 require('keymaps')
 require('plugins')
 
+vim.o.guifont="HackGen35 Console NF:h14"
+
+--FontFamily = "HackGen35 Console NF, HackGen35, BIZ UDゴシック, Windows"
 -- Terminal
 vim.o.shell = "powershell.exe"
 vim.api.nvim_create_autocmd({"TermOpen"}, { pattern = {"*"}, command = ":startinsert", })
