@@ -10,8 +10,8 @@ return {
         vim.g.memolist_memo_suffix = "md"
         vim.g.memolist_fzf = 0
         vim.g.memolist_template_dir_path = "~/.memolist/memotemplates"
-        --vim.api.nvim_set_keymap("n", "<leader>mn", ":MemoNew<CR>", {})
-        --vim.api.nvim_set_keymap("n", "<leader>ml", ":MemoList<CR>", {})
-        --vim.api.nvim_set_keymap("n", "<leader>mg", ":MemoGrep<CR>", {})
+--        vim.api.nvim_set_keymap("n", "<leader>mn", ":MemoNew<CR>", {})
+--        vim.api.nvim_set_keymap("n", "<leader>ml", ":MemoList<CR>", {})
+--        vim.api.nvim_set_keymap("n", "<leader>mg", ":MemoGrep<CR>", {})
     end, 
 }
