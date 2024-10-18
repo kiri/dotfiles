@@ -2,7 +2,8 @@ return {
     'glidenote/memolist.vim', 
     keys = {
         { "<leader>mn", ":MemoNew<CR>" },
-        { "<leader>ml", ":MemoList<CR>" },
+        { "<leader>ml", ":lua require('oil').open(vim.g.memolist_path)<CR>" },
+        --{ "<leader>ml", ":MemoList<CR>" },
         { "<leader>mg", ":MemoGrep<CR>" },
     },
     config = function() 

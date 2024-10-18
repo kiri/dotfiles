@@ -12,19 +12,17 @@ local M = {}
 M.IM = 0
 
 vim.api.nvim_create_augroup('zenhan',{})
-vim.api.nvim_create_autocmd({ 'InsertEnter' }, 
-{
+vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
     group = 'zenhan',
     pattern = { "*" },
     callback = function()
         --vim.fn.system(zenhan .. ' ' .. M.IM)
         vim.system({zenhan, M.IM},{text=true},function(job)
+            --
         end)
     end
 })
-
-vim.api.nvim_create_autocmd({ 'InsertLeave' }, 
-{
+vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
     group = 'zenhan',
     pattern = { "*" },
     callback = function()
@@ -34,26 +32,24 @@ vim.api.nvim_create_autocmd({ 'InsertLeave' },
         end)
     end
 })
-
-vim.api.nvim_create_autocmd({ 'CmdlineEnter' }, 
-{
+vim.api.nvim_create_autocmd({ 'CmdlineEnter' }, {
     group = 'zenhan',
     pattern = { "*" },
     callback = function()
         --vim.fn.system(zenhan .. ' 0')
         vim.system({zenhan, 0},{text=true},function(job)
+            --
         end)
     end
 })
-vim.api.nvim_create_autocmd({ 'CmdlineLeave' }, 
-{
+vim.api.nvim_create_autocmd({ 'CmdlineLeave' }, {
     group = 'zenhan',
     pattern = { "*" },
     callback = function()
         --vim.fn.system(zenhan .. ' 0')
         vim.system({zenhan, 0},{text=true},function(job)
+            --
         end)
     end
 })
-
 return M
