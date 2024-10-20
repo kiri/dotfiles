@@ -2,9 +2,11 @@ return {
     'glidenote/memolist.vim', 
     keys = {
         { "<leader>mn", ":MemoNew<CR>" },
-        { "<leader>ml", ":lua require('oil').open(vim.g.memolist_path)<CR>" },
+        { "<leader>ml", ":Telescope memo list<CR>" },
+        --{ "<leader>ml", ":lua require('oil').open(vim.g.memolist_path)<CR>" },
         --{ "<leader>ml", ":MemoList<CR>" },
-        { "<leader>mg", ":MemoGrep<CR>" },
+        { "<leader>mg", ":Telescope memo live_grep<CR>" },
+        --{ "<leader>mg", ":MemoGrep<CR>" },
     },
     config = function() 
         vim.g.memolist_path = "~/.memolist/memo"
