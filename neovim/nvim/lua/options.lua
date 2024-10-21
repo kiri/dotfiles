@@ -3,6 +3,8 @@ vim.o.encoding = 'utf-8'
 vim.scriptencoding = 'utf-8'
 
 --
+vim.opt.helplang = 'ja'
+--
 vim.g.loaded_gzip              = 1
 vim.g.loaded_tar               = 1
 vim.g.loaded_tarPlugin         = 1
